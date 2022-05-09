@@ -1,0 +1,5 @@
+package persistencia.modelos;
+
+public enum Nacao {
+	ORC_SNAGA, URUK_HAI, CAVALEIRO_DE_ROHAN, GUERREIRO_DE_GONDOR, HOBBIT, ELFO_DA_FLORESTA, ELFO_DE_LOTHLORIEN, ANAO;
+}
