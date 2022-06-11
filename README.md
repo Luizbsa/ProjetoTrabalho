@@ -1,7 +1,7 @@
 # ProjetoTrabalho
 
 Alunos:
-Luiz Felipe 
-Gustavo Oliveira
-Wender 
+Luiz Felipe, 
+Gustavo Oliveira, 
+Wender, 
 Eduardo Araujo
