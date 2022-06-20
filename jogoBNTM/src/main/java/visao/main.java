@@ -5,6 +5,7 @@ import persistencia.modelos.Personagem;
 import servico.controller.PersonagemController;
 import servico.dto.CriarPersonagemDto;
 import servico.dto.ListarPersonagemDto;
+import servico.excecao.PontosInsuficientesException;
 
 import java.io.IOException;
 import java.sql.SQLOutput;
@@ -116,31 +117,34 @@ public class main {
                         Scanner valor5 = new Scanner(System.in);
                         int pontos = valor5.nextInt();
 
-
-                        switch (opcaoR){
-                            case "A":{
-                                controller.setarPontosEmForça(pontos, personagem);
-                                break;
+                        try {
+                            switch (opcaoR) {
+                                case "A": {
+                                    controller.setarPontosEmForça(pontos, personagem);
+                                    break;
+                                }
+                                case "B": {
+                                    controller.setarPontosEmPrecisao(pontos, personagem);
+                                    break;
+                                }
+                                case "C": {
+                                    controller.setarPontosEmVelocidade(pontos, personagem);
+                                    break;
+                                }
+                                case "D": {
+                                    controller.setarPontosEmArmadura(pontos, personagem);
+                                    break;
+                                }
+                                case "E": {
+                                    controller.setarPontosEmRecuperacao(pontos, personagem);
+                                    break;
+                                }
+                                default: {
+                                    System.out.println("OPCAO INVALIDA!!");
+                                }
                             }
-                            case "B":{
-                                controller.setarPontosEmPrecisao(pontos, personagem);
-                                break;
-                            }
-                            case "C":{
-                                controller.setarPontosEmVelocidade(pontos, personagem);
-                                break;
-                            }
-                            case "D":{
-                                controller.setarPontosEmArmadura(pontos, personagem);
-                                break;
-                            }
-                            case "E":{
-                                controller.setarPontosEmRecuperacao(pontos, personagem);
-                                break;
-                            }
-                            default:{
-                                System.out.println("OPCAO INVALIDA!!");
-                            }
+                        } catch(PontosInsuficientesException e){
+                            System.out.println("Pontos insuficientes");
                         }
                         break;
                     }

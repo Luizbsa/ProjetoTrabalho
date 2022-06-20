@@ -7,6 +7,7 @@ import persistencia.modelos.Status;
 import servico.dto.CriarPersonagemDto;
 import servico.dto.ListarPersonagemDto;
 import servico.dto.MostrarStatusDosPersonagensDto;
+import servico.excecao.PontosInsuficientesException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -65,36 +66,37 @@ public class PersonagemController {
         return dao.encontrarPorId(id);
     }
 
-    public void setarPontosEmPrecisao(int pontos, Personagem personagem) throws IOException {
+    public void setarPontosEmPrecisao(int pontos, Personagem personagem) throws IOException, PontosInsuficientesException {
         if(personagem.getPontosStatus() >= pontos){
             personagem.setPontosStatus(personagem.getPontosStatus() - pontos);
             personagem.getStatus().setPrecisao(pontos + personagem.getStatus().getPrecisao());
             dao.atualizar();
             System.out.println("Pontos atribuidos com Sucesso");
         }else{
-            System.out.println("Erro: você não tem pontos o suficiente");
-        }
+            throw new PontosInsuficientesException();        }
     }
 
-    public void setarPontosEmArmadura(int pontos, Personagem personagem) throws IOException {
+    public void setarPontosEmArmadura(int pontos, Personagem personagem) throws IOException, PontosInsuficientesException {
         if(personagem.getPontosStatus() >= pontos){
             personagem.setPontosStatus(personagem.getPontosStatus() - pontos);
             personagem.getStatus().setArmadura(pontos + personagem.getStatus().getArmadura());
             dao.atualizar();
             System.out.println("Pontos atribuidos com Sucesso");
         }else{
-            System.out.println("Erro: você não tem pontos o suficiente");
+            throw new PontosInsuficientesException();
+
+
         }
     }
 
-    public void setarPontosEmRecuperacao(int pontos, Personagem personagem) throws IOException {
+    public void setarPontosEmRecuperacao(int pontos, Personagem personagem) throws IOException, PontosInsuficientesException {
         if(personagem.getPontosStatus() >= pontos){
             personagem.setPontosStatus(personagem.getPontosStatus() - pontos);
             personagem.getStatus().setRecuperacao(pontos + personagem.getStatus().getRecuperacao());
             dao.atualizar();
             System.out.println("Pontos atribuidos com Sucesso");
         }else{
-            System.out.println("Erro: você não tem pontos o suficiente");
+           throw new PontosInsuficientesException();
         }
     }
 
